@@ -338,7 +338,8 @@
         <div class="alert-success">{{ session('success') }}</div>
       @endif
 
-      <form action="{{ route('contact.submit') }}" method="POST">
+      <!-- <form action="{{ route('contact.submit') }}" method="POST"> -->
+        <form id="contactForm">
         @csrf
 
         <div class="form-grid">
@@ -483,6 +484,40 @@
       </form>
     </div>
   </div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$('#contactForm').on('submit', function(e) {
+    e.preventDefault();
+
+    // Collect form data
+    var formData = $(this).serialize();
+
+    $.ajax({
+        url: 'https://constantemails.com/api/contact-enquiries', // Server B API endpoint
+        type: 'POST',
+        data: formData,
+        headers: {
+            'Authorization': 'Bearer {{ env("SERVER_B_API_TOKEN") }}' // Sanctum token stored in Server A .env
+        },
+        success: function(response) {
+            alert(response.message);
+            console.log(response.data);
+        },
+        error: function(xhr) {
+          console.log(xhr.responseText);
+            if (xhr.responseJSON && xhr.responseJSON.errors) {
+                console.log(xhr.responseJSON.errors);
+                alert('Validation failed. Please check your inputs.');
+            } else {
+                alert('Unauthorized or server error.');
+            }
+        }
+    });
+});
+</script>
+
 
 </body>
 </html>

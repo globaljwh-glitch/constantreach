@@ -34,5 +34,9 @@ return [
             'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
         ],
     ],
+    'remote_api' => [
+    'url' => env('REMOTE_API_URL'),
+    'token' => env('REMOTE_API_TOKEN'),
+],
 
 ];
