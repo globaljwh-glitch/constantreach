@@ -491,31 +491,50 @@
 $('#contactForm').on('submit', function(e) {
     e.preventDefault();
 
-    // Collect form data
-    var formData = $(this).serialize();
+    let form = $(this);
+    let submitBtn = form.find('[type="submit"]');
+
+    submitBtn.prop('disabled', true).text('Submitting...');
 
     $.ajax({
-        url: 'https://constantemails.com/api/contact-enquiries', // Server B API endpoint
+        url: '/contact-enquiry-submit',
         type: 'POST',
-        data: formData,
-        headers: {
-            'Authorization': 'Bearer {{ env("SERVER_B_API_TOKEN") }}' // Sanctum token stored in Server A .env
-        },
+        data: form.serialize(),
+        dataType: 'json',
+
         success: function(response) {
-            alert(response.message);
-            console.log(response.data);
-        },
-        error: function(xhr) {
-          console.log(xhr.responseText);
-            if (xhr.responseJSON && xhr.responseJSON.errors) {
-                console.log(xhr.responseJSON.errors);
-                alert('Validation failed. Please check your inputs.');
+
+            if (response.success) {
+                alert(response.message || 'Enquiry submitted successfully!');
+
+                form[0].reset();
+
+                // Refresh your existing session-based CAPTCHA
+                location.reload();
             } else {
-                alert('Unauthorized or server error.');
+                alert(response.message || 'Unable to submit enquiry.');
             }
+        },
+
+        error: function(xhr, status, error) {
+
+          console.log('HTTP Status:', xhr.status);
+          console.log('Response:', xhr.responseText);
+
+          let response = xhr.responseJSON;
+
+          alert(
+              response?.message ||
+              'Something went wrong. Please try again.'
+          );
+      },
+
+        complete: function() {
+            submitBtn.prop('disabled', false).text('Submit');
         }
     });
 });
+
 </script>
 
 

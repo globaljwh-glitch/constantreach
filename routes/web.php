@@ -27,4 +27,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
+Route::get('/contact-captcha', [ContactController::class, 'captcha'])
+    ->middleware('throttle:30,1');
+
+Route::post('/contact-enquiry-submit', [ContactController::class, 'store'])
+    ->middleware('throttle:10,1');
+    
+
 require __DIR__.'/auth.php';
