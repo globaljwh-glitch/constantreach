@@ -140,8 +140,8 @@
     .form-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 20px;
-      margin-bottom: 28px;
+      gap: 10px;
+      margin-bottom: 25px;
     }
 
     @media (min-width: 650px) {
@@ -189,9 +189,9 @@
 
     .form-input {
       width: 100%;
-      padding: 14px 14px 14px 46px;
+      padding: 7px 7px 7px 40px;
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: 10px;
       background: #f8fafc;
       font-size: 15px;
       color: var(--text);
@@ -295,6 +295,15 @@
       font-size: 14px;
       font-weight: 600;
     }
+    .alert-danger {
+    background-color: #fee2e2;
+    color: #991b1b;
+    padding: 16px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-weight: 600;
+}
     .submit-btn svg {
     width: 16px;
     height: 16px;
@@ -334,9 +343,7 @@
     </div>
 
     <div class="form-panel">
-      @if(session('success'))
-        <div class="alert-success">{{ session('success') }}</div>
-      @endif
+     <div id="formMessage" class="alert d-none" role="alert"></div>
 
       <!-- <form action="{{ route('contact.submit') }}" method="POST"> -->
         <form id="contactForm">
@@ -351,7 +358,8 @@
               <input type="text" id="first_name" name="first_name" value="{{ old('first_name') }}" class="form-input @error('first_name') is-invalid @enderror" >
               <svg viewBox="0 0 16 16"><path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/></svg>
             </div>
-            @error('first_name') <div class="error-feedback">{{ $message }}</div> @enderror
+            <span class="text-danger error-text first_name_error"></span>
+            
           </div>
 
           <div class="form-group">
@@ -360,7 +368,7 @@
               <input type="text" id="last_name" name="last_name" value="{{ old('last_name') }}" class="form-input @error('last_name') is-invalid @enderror" >
               <svg viewBox="0 0 16 16"><path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/></svg>
             </div>
-            @error('last_name') <div class="error-feedback">{{ $message }}</div> @enderror
+            <span class="text-danger error-text last_name_error"></span>
           </div>
 
           <div class="form-group">
@@ -369,7 +377,7 @@
               <input type="email" id="email" name="email" value="{{ old('email') }}" class="form-input @error('email') is-invalid @enderror" >
               <svg viewBox="0 0 16 16"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741zM1 11.105l4.708-2.897L1 5.383z"/></svg>
             </div>
-            @error('email') <div class="error-feedback">{{ $message }}</div> @enderror
+            <span class="text-danger error-text email_error"></span>
           </div>
 
           <div class="form-group">
@@ -378,7 +386,7 @@
               <input type="tel" id="phone" name="phone" value="{{ old('phone') }}" class="form-input @error('phone') is-invalid @enderror" required>
               <svg viewBox="0 0 16 16"><path d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/></svg>
             </div>
-            @error('phone') <div class="error-feedback">{{ $message }}</div> @enderror
+            <span class="text-danger error-text phone_error"></span>
           </div>
 
           <div class="section-title">Address Details</div>
@@ -391,7 +399,7 @@
                 <input type="text" id="address" name="address" value="{{ old('address') }}" class="form-input @error('address') is-invalid @enderror" required>
                 <svg viewBox="0 0 16 16"><path d="M8 0.5a5.5 5.5 0 0 0-5.5 5.5c0 4.25 5.5 9.5 5.5 9.5s5.5-5.25 5.5-9.5a5.5 5.5 0 0 0-5.5-5.5zM8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/></svg>
               </div>
-              @error('address') <div class="error-feedback">{{ $message }}</div> @enderror
+              <span class="text-danger error-text address_error"></span>
             </div>
 
             <div class="form-group">
@@ -400,7 +408,7 @@
                 <input type="text" id="city" name="city" value="{{ old('city') }}" class="form-input @error('city') is-invalid @enderror" required>
                 <svg viewBox="0 0 16 16"><path d="M14.708 11.108a1 1 0 0 0-.708-.292H2a1 1 0 0 0-.708.292A1 1 0 0 0 1 11.816V14a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.184a1 1 0 0 0-.292-.708M2 1v10h12V1zM0 11.5a.5.5 0 0 1 .5-.5h15a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5H1.5A1.5 1.5 0 0 1 0 14.5z"/></svg>
               </div>
-              @error('city') <div class="error-feedback">{{ $message }}</div> @enderror
+              <span class="text-danger error-text city_error"></span>
             </div>
           </div>
 
@@ -409,19 +417,19 @@
             <div class="form-group">
               <label for="state">State</label>
               <input type="text" id="state" name="state" value="{{ old('state') }}" class="form-input @error('state') is-invalid @enderror" style="padding-left: 16px;" required>
-              @error('state') <div class="error-feedback">{{ $message }}</div> @enderror
+              <span class="text-danger error-text state_error"></span>
             </div>
 
             <div class="form-group">
               <label for="zip">Zip / Postal</label>
               <input type="text" id="zip" name="zip" value="{{ old('zip') }}" class="form-input @error('zip') is-invalid @enderror" style="padding-left: 16px;" required>
-              @error('zip') <div class="error-feedback">{{ $message }}</div> @enderror
+              <span class="text-danger error-text zip_error"></span>
             </div>
 
             <div class="form-group">
               <label for="country">Country</label>
               <input type="text" id="country" name="country" value="{{ old('country') }}" class="form-input @error('country') is-invalid @enderror" style="padding-left: 16px;" required>
-              @error('country') <div class="error-feedback">{{ $message }}</div> @enderror
+              <span class="text-danger error-text country_error"></span>
             </div>
           </div>
 
@@ -433,7 +441,7 @@
               <input type="text" id="products_interested" name="products_interested" value="{{ old('products_interested') }}" class="form-input @error('products_interested') is-invalid @enderror" required>
               <svg viewBox="0 0 16 16"><path d="M2.5 8a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zM2 5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5zm2-1a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H4z"/></svg>
             </div>
-            @error('products_interested') <div class="error-feedback">{{ $message }}</div> @enderror
+            <span class="text-danger error-text products_interested_error"></span>
           </div>
 
           <div class="form-group">
@@ -449,9 +457,9 @@
                 <option value="Sport Nutrition" {{ old('application') == 'Sport Nutrition' ? 'selected' : '' }}>Sport Nutrition</option>
                 <option value="Industrial" {{ old('application') == 'Industrial' ? 'selected' : '' }}>Industrial</option>
               </select>
-              <svg viewBox="0 0 16 16"><path d="M10.478 1.647a.5.5 0 1 0-.956-.294l-4 13a.5.5 0 0 0 .956.294l4-13zM4.854 4.146a.5.5 0 1 0-.708-.708L1.707 5.854a.5.5 0 0 0 0 .708l2.439 2.439a.5.5 0 1 0 .708-.708L2.773 6l2.081-2.146z"/></svg>
+              
             </div>
-            @error('application') <div class="error-feedback">{{ $message }}</div> @enderror
+            <span class="text-danger error-text application_error"></span>
           </div>
 
           <div class="form-group full-width">
@@ -460,7 +468,7 @@
               <input type="text" id="final_application" name="final_application" value="{{ old('final_application') }}" class="form-input @error('final_application') is-invalid @enderror" required>
               <svg viewBox="0 0 16 16"><path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/></svg>
             </div>
-            @error('final_application') <div class="error-feedback">{{ $message }}</div> @enderror
+            <span class="text-danger error-text final_application_error"></span>
           </div>
 
           <!-- Laravel Math Captcha -->
@@ -472,7 +480,7 @@
                 <input type="text" id="captcha" name="captcha" placeholder="Answer" class="form-input @error('captcha') is-invalid @enderror" style="padding-left: 16px;" required>
               </div>
             </div>
-            @error('captcha') <div class="error-feedback">{{ $message }}</div> @enderror
+            <span class="text-danger error-text captcha_error"></span>
           </div>
 
         </div>
@@ -488,11 +496,62 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+// $('#contactForm').on('submit', function(e) {
+//     e.preventDefault();
+
+//     let form = $(this);
+//     let submitBtn = form.find('[type="submit"]');
+
+//     submitBtn.prop('disabled', true).text('Submitting...');
+
+//     $.ajax({
+//         url: '/contact-enquiry-submit',
+//         type: 'POST',
+//         data: form.serialize(),
+//         dataType: 'json',
+
+//         success: function(response) {
+
+//             if (response.success) {
+//                 alert(response.message || 'Enquiry submitted successfully!');
+
+//                 form[0].reset();
+
+//                 // Refresh your existing session-based CAPTCHA
+//                 location.reload();
+//             } else {
+//                 alert(response.message || 'Unable to submit enquiry.');
+//             }
+//         },
+
+//         error: function(xhr, status, error) {
+
+//           console.log('HTTP Status:', xhr.status);
+//           console.log('Response:', xhr.responseText);
+
+//           let response = xhr.responseJSON;
+
+//           alert(
+//               response?.message ||
+//               'Something went wrong. Please try again.'
+//           );
+//       },
+
+//         complete: function() {
+//             submitBtn.prop('disabled', false).text('Submit');
+//         }
+//     });
+// });
 $('#contactForm').on('submit', function(e) {
     e.preventDefault();
 
     let form = $(this);
     let submitBtn = form.find('[type="submit"]');
+
+    // Clear previous messages and validation errors
+    $('#formMessage').addClass('d-none').removeClass('alert-success alert-danger').text('');
+    $('.error-text').text('');
+    $('.form-control').removeClass('is-invalid');
 
     submitBtn.prop('disabled', true).text('Submitting...');
 
@@ -501,42 +560,76 @@ $('#contactForm').on('submit', function(e) {
         type: 'POST',
         data: form.serialize(),
         dataType: 'json',
+        headers: {
+            'Accept': 'application/json'
+        },
 
         success: function(response) {
-
             if (response.success) {
-                alert(response.message || 'Enquiry submitted successfully!');
+                $('#formMessage')
+                    .removeClass('d-none alert-danger')
+                    .addClass('alert-success')
+                    .text(response.message || 'Enquiry submitted successfully!');
 
                 form[0].reset();
 
-                // Refresh your existing session-based CAPTCHA
-                location.reload();
-            } else {
-                alert(response.message || 'Unable to submit enquiry.');
+                // Scroll to success message
+                $('html, body').animate({
+                    scrollTop: $('#formMessage').offset().top - 100
+                }, 500);
             }
         },
 
-        error: function(xhr, status, error) {
+        error: function(xhr) {
+            if (xhr.status === 422 && xhr.responseJSON.errors) {
 
-          console.log('HTTP Status:', xhr.status);
-          console.log('Response:', xhr.responseText);
+                $.each(xhr.responseJSON.errors, function(field, messages) {
+                    $('.' + field + '_error').text(messages[0]);
+                    $('[name="' + field + '"]').addClass('is-invalid');
+                });
 
-          let response = xhr.responseJSON;
+                // Show general validation message at the top
+                $('#formMessage')
+                    .removeClass('d-none alert-success')
+                    .addClass('alert-danger')
+                    .text('Please correct the errors highlighted below.');
 
-          alert(
-              response?.message ||
-              'Something went wrong. Please try again.'
-          );
-      },
+            } else {
+                $('#formMessage')
+                    .removeClass('d-none alert-success')
+                    .addClass('alert-danger')
+                    .text(xhr.responseJSON?.message || 'Something went wrong. Please try again.');
+            }
+
+            $('html, body').animate({
+                scrollTop: $('#formMessage').offset().top - 100
+            }, 500);
+        },
 
         complete: function() {
             submitBtn.prop('disabled', false).text('Submit');
         }
     });
 });
-
 </script>
+<style>
+  .error-text {
+    color: red;
+    font-size: 13px;
+    display: block;
+    margin-top: 4px;
+}
 
+.is-invalid {
+    border-color: red !important;
+}
+#formMessage {
+    margin-bottom: 20px;
+    padding: 12px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+</style>
 
 </body>
 </html>
