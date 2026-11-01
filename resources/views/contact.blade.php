@@ -355,7 +355,7 @@
           <div class="form-group">
             <label for="first_name">First Name</label>
             <div class="input-wrapper">
-              <input type="text" id="first_name" name="first_name" value="{{ old('first_name') }}" class="form-input @error('first_name') is-invalid @enderror" >
+              <input type="text" id="first_name" name="first_name" value="{{ old('first_name') }}" class="form-input @error('first_name') is-invalid @enderror" required>
               <svg viewBox="0 0 16 16"><path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/></svg>
             </div>
             <span class="text-danger error-text first_name_error"></span>
@@ -365,7 +365,7 @@
           <div class="form-group">
             <label for="last_name">Last Name</label>
             <div class="input-wrapper">
-              <input type="text" id="last_name" name="last_name" value="{{ old('last_name') }}" class="form-input @error('last_name') is-invalid @enderror" >
+              <input type="text" id="last_name" name="last_name" value="{{ old('last_name') }}" class="form-input @error('last_name') is-invalid @enderror" required>
               <svg viewBox="0 0 16 16"><path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/></svg>
             </div>
             <span class="text-danger error-text last_name_error"></span>
@@ -374,7 +374,7 @@
           <div class="form-group">
             <label for="email">Email Address</label>
             <div class="input-wrapper">
-              <input type="email" id="email" name="email" value="{{ old('email') }}" class="form-input @error('email') is-invalid @enderror" >
+              <input type="email" id="email" name="email" value="{{ old('email') }}" class="form-input @error('email') is-invalid @enderror" required>
               <svg viewBox="0 0 16 16"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741zM1 11.105l4.708-2.897L1 5.383z"/></svg>
             </div>
             <span class="text-danger error-text email_error"></span>
