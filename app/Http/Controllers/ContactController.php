@@ -100,7 +100,7 @@ class ContactController extends Controller
         // 6. Return successful JSON response
         return response()->json([
             'success' => true,
-            'message' => 'Information recorded successfully!'
+            'message' => 'Thanks for submitting form, your Information has been submitted successfully!!'
         ], 200);
 
     } catch (\Throwable $e) {
