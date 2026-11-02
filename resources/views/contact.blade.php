@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="icon" type="image/x-icon" href="http://constantemails-v3.test/assets/admin/assets/img/favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Advanced Contact Form</title>
   <style>
@@ -357,26 +358,37 @@ display: none;
 
         <div class="form-grid">
           <div class="section-title">Contact Info</div>
-
-          <div class="form-group">
-            <label for="first_name">First Name</label>
-            <div class="input-wrapper">
-              <input type="text" id="first_name" name="first_name" value="{{ old('first_name') }}" class="form-input @error('first_name') is-invalid @enderror" required>
-              <svg viewBox="0 0 16 16"><path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/></svg>
+          <div class="three-column-row">
+            <div class="form-group">
+              <label for="first_name">First Name</label>
+              <div class="input-wrapper">
+                <input type="text" id="first_name" name="first_name" value="{{ old('first_name') }}" class="form-input @error('first_name') is-invalid @enderror" required>
+                <svg viewBox="0 0 16 16"><path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/></svg>
+              </div>
+              <span class="text-danger error-text first_name_error"></span>
+              
             </div>
-            <span class="text-danger error-text first_name_error"></span>
-            
-          </div>
 
-          <div class="form-group">
-            <label for="last_name">Last Name</label>
-            <div class="input-wrapper">
-              <input type="text" id="last_name" name="last_name" value="{{ old('last_name') }}" class="form-input @error('last_name') is-invalid @enderror" required>
-              <svg viewBox="0 0 16 16"><path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/></svg>
+            <div class="form-group">
+              <label for="last_name">Last Name</label>
+              <div class="input-wrapper">
+                <input type="text" id="last_name" name="last_name" value="{{ old('last_name') }}" class="form-input @error('last_name') is-invalid @enderror" required>
+                <svg viewBox="0 0 16 16"><path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/></svg>
+              </div>
+              <span class="text-danger error-text last_name_error"></span>
             </div>
-            <span class="text-danger error-text last_name_error"></span>
+            <div class="form-group">
+              <label for="phone">Company Name</label>
+              <div class="input-wrapper">
+                <input type="tel" id="company" name="company" value="{{ old('company') }}" class="form-input @error('company') is-invalid @enderror" required>
+                <svg viewBox="0 0 16 16" fill="currentColor">
+                    <path d="M2 14.5V2.75A.75.75 0 0 1 2.75 2h6.5a.75.75 0 0 1 .75.75V5h3.25a.75.75 0 0 1 .75.75v8.75H2zm1.5-11v9.5h5v-9.5h-5zm6.5 3v6.5h3v-6.5h-3z"/>
+                    <path d="M4.5 4h1v1h-1V4zm2.5 0h1v1H7V4zM4.5 6.5h1v1h-1v-1zm2.5 0h1v1H7v-1zM4.5 9h1v1h-1V9zm2.5 0h1v1H7V9zm3.5-1h1v1h-1V8zm0 2.5h1v1h-1v-1z"/>
+                </svg>
+              </div>
+              <span class="text-danger error-text phone_error"></span>
+            </div>
           </div>
-
           <div class="form-group">
             <label for="email">Email Address</label>
             <div class="input-wrapper">
@@ -394,6 +406,7 @@ display: none;
             </div>
             <span class="text-danger error-text phone_error"></span>
           </div>
+          
 
           <div class="section-title">Address Details</div>
 
