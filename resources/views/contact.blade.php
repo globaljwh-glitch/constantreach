@@ -32,7 +32,7 @@
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      padding: 40px 20px;
+      padding: 20px 20px;
     }
 
     .form-wrapper {
@@ -66,9 +66,10 @@
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: url('https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=600&q=80') center/cover;
-      opacity: 0.12;
-      mix-blend-mode: overlay;
+/*      background: url('https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=600&q=80') center/cover;*/
+      background: url('../img/fill-out.jpg')  center/cover;
+      /*opacity: 0.12;
+      mix-blend-mode: overlay;*/
     }
 
     .info-content {
@@ -121,7 +122,7 @@
     }
 
     .form-panel {
-      padding: 40px;
+      padding: 15px 30px;
     }
 
     .section-title {
@@ -140,8 +141,8 @@
     .form-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 10px;
-      margin-bottom: 25px;
+      gap: 4px 10px;
+      margin-bottom: 18px;
     }
 
     @media (min-width: 650px) {
@@ -189,7 +190,7 @@
 
     .form-input {
       width: 100%;
-      padding: 7px 7px 7px 40px;
+      padding: 5px 7px 5px 40px;
       border: 1px solid var(--border);
       border-radius: 10px;
       background: #f8fafc;
@@ -242,11 +243,11 @@
       display: flex;
       align-items: center;
       gap: 15px;
-      background: #f8fafc;
+      /*background: #f8fafc;
       padding: 10px 16px;
       border-radius: 12px;
-      border: 1px solid var(--border);
-      margin-bottom: 10px;
+      border: 1px solid var(--border);*/
+      margin-bottom: 7px;
     }
 
     .captcha-img {
@@ -263,7 +264,7 @@
 
     .submit-btn {
       width: 100%;
-      padding: 15px;
+      padding: 10px;
       background-color: var(--primary);
       color: white;
       border: none;
@@ -309,7 +310,12 @@
     height: 16px;
     fill: currentColor;
 }
+.d-none{
+display: none;
+}
+
   </style>
+
 </head>
 <body>
 
@@ -319,7 +325,7 @@
         <h2>Let's talk business</h2>
         <p>Fill out the form and our growth team will connect with you within 24 hours.</p>
         
-        <div class="contact-details">
+        <!-- <div class="contact-details">
           <div class="detail-item">
             <div class="icon-box">
               <svg viewBox="0 0 16 16"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741zM1 11.105l4.708-2.897L1 5.383z"/></svg>
@@ -338,7 +344,7 @@
             </div>
             <span>New Jercy, NJ</span>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
 
@@ -474,7 +480,7 @@
           <!-- Laravel Math Captcha -->
           <div class="form-group full-width">
             <label for="captcha">Security Check</label>
-            <div class="captcha-container">
+            <div class="captcha-container ">
               <div class="captcha-img">{{ session('captcha_num1', rand(1,9)) }} + {{ session('captcha_num2', rand(1,9)) }} =</div>
               <div class="input-wrapper" style="flex-grow: 1;">
                 <input type="text" id="captcha" name="captcha" placeholder="Answer" class="form-input @error('captcha') is-invalid @enderror" style="padding-left: 16px;" required>
