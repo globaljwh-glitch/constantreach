@@ -355,7 +355,7 @@ display: none;
       <!-- <form action="{{ route('contact.submit') }}" method="POST"> -->
         <form id="contactForm">
         @csrf
-
+        <input type="hidden" name="campaign_id" value="{{ $campaignId }}">
         <div class="form-grid">
           <div class="section-title">Contact Info</div>
           <div class="three-column-row">

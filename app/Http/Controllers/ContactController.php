@@ -11,6 +11,8 @@ use App\Services\ConstantReachApiService;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Log;
 use Throwable;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Contracts\Encryption\DecryptException;
 
 class ContactController extends Controller
 {
@@ -168,10 +170,27 @@ class ContactController extends Controller
     /**
      * Renders the frontend interface and safely manages security values.
      */
-    public function show()
+    public function show(Request $request)
     {
-        // FIX: If the user is redirected back due to validation errors,
-        // DO NOT overwrite the numbers. Keep them so the user's input matches.
+        $campaignId = $request->input('camp_id');
+        // try {
+        //     $campaignId = Crypt::decryptString($encryptedCampaignId);
+
+        //     dd([
+        //         'status' => 'success',
+        //         'campaign_id' => $campaignId,
+        //     ]);
+
+        // } catch (DecryptException $e) {
+
+        //     dd([
+        //         'status' => 'failed',
+        //         'error' => $e->getMessage(),
+        //         'received_length' => strlen($encryptedCampaignId ?? ''),
+        //         'app_key_fingerprint' => substr(hash('sha256', config('app.key')), 0, 12),
+        //     ]);
+        // }
+
         if (!old('_token') || !session()->has('captcha_num1')) {
             session([
                 'captcha_num1' => rand(2, 9),
@@ -179,7 +198,7 @@ class ContactController extends Controller
             ]);
         }
         //echo "1";print_r(session);die;
-        return view('contact');
+        return view('contact',compact('campaignId'));
     }
 
     /**
