@@ -79,6 +79,7 @@ class ContactController extends Controller
     try {
 
         // 3. Submit enquiry to constantemails.com
+        $validatedData['campaign_id']=$request->campaign_id;
         $response = $api->submitEnquiry($validatedData);
 
         // 4. Handle API failure
