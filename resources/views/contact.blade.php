@@ -314,7 +314,12 @@
 .d-none{
 display: none;
 }
-
+textarea {
+    vertical-align: top;
+    text-align: left;
+    padding-top: 10px;
+    padding-left: 12px;
+}
   </style>
 
 </head>
@@ -454,7 +459,7 @@ display: none;
 
           <div class="section-title">Inquiry Specs</div>
 
-          <div class="form-group">
+          <div class="form-group full-width">
             <label for="products_interested">What products are you interested in?</label>
             <div class="input-wrapper">
               <input type="text" id="products_interested" name="products_interested" value="{{ old('products_interested') }}" class="form-input @error('products_interested') is-invalid @enderror" required>
@@ -463,7 +468,7 @@ display: none;
             <span class="text-danger error-text products_interested_error"></span>
           </div>
 
-          <div class="form-group">
+          <div class="form-group full-width">
             <label for="application">Application and Use of Product</label>
             <div class="input-wrapper">
               <select name="application" id="application" class="form-input @error('application') is-invalid @enderror" required>
@@ -484,7 +489,8 @@ display: none;
           <div class="form-group full-width">
             <label for="final_application">Final Application</label>
             <div class="input-wrapper">
-              <input type="text" id="final_application" name="final_application" value="{{ old('final_application') }}" class="form-input @error('final_application') is-invalid @enderror" required>
+              <!-- <input type="text" id="final_application" name="final_application" value="{{ old('final_application') }}" class="form-input @error('final_application') is-invalid @enderror" required> -->
+              <textarea type="text" id="final_application" name="final_application" value="{{ old('final_application') }}" class="form-input @error('final_application') is-invalid @enderror" required></textarea>
               <svg viewBox="0 0 16 16"><path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/></svg>
             </div>
             <span class="text-danger error-text final_application_error"></span>
@@ -515,52 +521,7 @@ display: none;
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-// $('#contactForm').on('submit', function(e) {
-//     e.preventDefault();
 
-//     let form = $(this);
-//     let submitBtn = form.find('[type="submit"]');
-
-//     submitBtn.prop('disabled', true).text('Submitting...');
-
-//     $.ajax({
-//         url: '/contact-enquiry-submit',
-//         type: 'POST',
-//         data: form.serialize(),
-//         dataType: 'json',
-
-//         success: function(response) {
-
-//             if (response.success) {
-//                 alert(response.message || 'Enquiry submitted successfully!');
-
-//                 form[0].reset();
-
-//                 // Refresh your existing session-based CAPTCHA
-//                 location.reload();
-//             } else {
-//                 alert(response.message || 'Unable to submit enquiry.');
-//             }
-//         },
-
-//         error: function(xhr, status, error) {
-
-//           console.log('HTTP Status:', xhr.status);
-//           console.log('Response:', xhr.responseText);
-
-//           let response = xhr.responseJSON;
-
-//           alert(
-//               response?.message ||
-//               'Something went wrong. Please try again.'
-//           );
-//       },
-
-//         complete: function() {
-//             submitBtn.prop('disabled', false).text('Submit');
-//         }
-//     });
-// });
 $('#contactForm').on('submit', function(e) {
     e.preventDefault();
 
