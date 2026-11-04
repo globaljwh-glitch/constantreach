@@ -103,7 +103,7 @@ class ContactController extends Controller
         // 6. Return successful JSON response
         return response()->json([
             'success' => true,
-            'message' => 'Thanks for submitting form, your Information has been submitted successfully!!'
+            'message' => 'Your form has been submitted successfully. We will reach out to you within the next 24–48 hours.'
         ], 200);
 
     } catch (\Throwable $e) {
